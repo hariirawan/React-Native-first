@@ -19,6 +19,10 @@ import Note from '../../components/Note/Note';
 
 type Props = {};
 export default class HomeScreen extends Component<Props> {
+  static navigationOptions = {
+    header: null
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -59,26 +63,20 @@ export default class HomeScreen extends Component<Props> {
         />
       );
     });
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.textHeader}>- Note -</Text>
+          <Text style={styles.textHeader}>- NOTE BUG -</Text>
         </View>
         <ScrollView style={styles.scrollContainer}>{notes}</ScrollView>
         <View style={styles.footer}>
-          <View style={styles.footerContainer}>
-            <TextInput
-              onChangeText={noteText => this.setState({ noteText })}
-              value={this.state.noteText}
-              style={styles.textInput}
-              placeholder="Write note here"
-              placeholderTextColor="white"
-              placeholderTextColor="#A6A6A6"
-            />
-            <TouchableOpacity style={styles.addButton} onPress={this.addNote}>
-              <Text style={styles.addButtonText}>+</Text>
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={styles.addButton}
+            onPress={() => navigate('FormNote')}
+          >
+            <Text style={styles.addButtonText}>+</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#51D15B',
-    borderBottomColor: '#42A855',
+    borderBottomColor: '##42A855',
     borderBottomWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -106,31 +104,12 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: 60
   },
-  footer: {
-    position: 'absolute',
-    flex: 1,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    zIndex: 10
-  },
-  footerContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderTopWidth: 1,
-    borderTopColor: '#D3E0D7',
-    paddingHorizontal: 10
-  },
-  textInput: {
-    flex: 1,
-    color: '#FFFFFF',
-    padding: 15,
-    color: '#A6A6A6'
-  },
   addButton: {
+    position: 'absolute',
+    right: 10,
+    bottom: 10,
     backgroundColor: '#51D15B',
-    borderRadius: 5,
+    borderRadius: 50,
     height: 50,
     width: 50,
     justifyContent: 'center',
